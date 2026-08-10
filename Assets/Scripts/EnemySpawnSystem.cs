@@ -8,6 +8,7 @@ public class EnemySpawnSystem : MonoBehaviour
     [SerializeField] float enemySpawnIntervall = 10f;
     
     private BoxCollider2D _boxCollider2D;
+    private Transform _transform;
 
     private void Awake()
     {
@@ -31,12 +32,13 @@ public class EnemySpawnSystem : MonoBehaviour
             // 10 gegner spawnen alle 10 sekunden
             for (int i = 0; i < 10; i++)
             {
-                Instantiate(enemyPrefab, GetRandomPointonEdge(), Quaternion.identity);
+                Vector2 spawnPoint = GetRandomPointonEdge();
+                Instantiate(enemyPrefab, spawnPoint, GetRotationTowardsMiddle(spawnPoint));
             }
         }
     }
 
-    private Vector3 GetRandomPointonEdge()
+    private Vector2 GetRandomPointonEdge()
     {
         Bounds b =  _boxCollider2D.bounds;
         
@@ -46,16 +48,23 @@ public class EnemySpawnSystem : MonoBehaviour
         //geht ne zufällige distanz um den Perimeter des GameObjects um zufällige Spawnpoints zu setzen
         float t = Random.Range(0f, 2f * (width + height));
 
-        if (t < width) return new Vector3(b.min.x + t, b.min.y, 0f); // unten
+        if (t < width) return new Vector2(b.min.x + t, b.min.y); // unten
         t -= width;
         
-        if (t < width) return new Vector3(b.min.x + t, b.max.y, 0f); //oben
+        if (t < width) return new Vector2(b.min.x + t, b.max.y); //oben
         t -= width;
         
-        if (t < height) return new Vector3(b.min.x, b.min.y + t, 0f); //links 
+        if (t < height) return new Vector2(b.min.x, b.min.y + t); //links 
         t -= height;
         
-        return new Vector3(b.max.x, b.min.y + t, 0f); //rechts
+        return new Vector2(b.max.x, b.min.y + t); //rechts
+    }
+
+    private Quaternion GetRotationTowardsMiddle(Vector2 spawnPoint)
+    {
+        Vector2 dir = (Vector2)_boxCollider2D.bounds.center - spawnPoint;
+
+        return Quaternion.LookRotation(Vector3.forward, dir);
     }
 
     // Update is called once per frame

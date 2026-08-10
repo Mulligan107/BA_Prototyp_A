@@ -6,7 +6,7 @@ public class EnemyController : MonoBehaviour
     public Vector2 DirectionToPlayer {get; set;}
 
     [SerializeField] private float playerAwarenessDistance = 100f;
-    [SerializeField] private float speed = 4f;
+    [SerializeField] private float speed = 3f;
     [SerializeField] private float rotationSpeed = 100f;
 
     private Transform _player;
@@ -17,7 +17,7 @@ public class EnemyController : MonoBehaviour
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
-        _player = Object.FindAnyObjectByType<PlayerController>().transform;
+        _player = FindAnyObjectByType<PlayerController>().transform;
     }
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
