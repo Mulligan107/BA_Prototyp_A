@@ -9,6 +9,9 @@ public class EnemySpawnSystem : MonoBehaviour
     
     private BoxCollider2D _boxCollider2D;
     private Transform _transform;
+    
+    private int rounds;
+    private int _enemyAmount = 10;
 
     private void Awake()
     {
@@ -24,17 +27,27 @@ public class EnemySpawnSystem : MonoBehaviour
     private IEnumerator spawnEnemyLoop()
     {
         WaitForSeconds wait = new WaitForSeconds(enemySpawnIntervall);
-
+        
         while (true)
         {
             yield return wait;
-
-            // 10 gegner spawnen alle 10 sekunden
-            for (int i = 0; i < 10; i++)
+            
+            rounds += 1;
+            if (rounds >= 3)
+            {
+                _enemyAmount += 5;
+                rounds = 0;
+            }
+            
+            Debug.Log("Rounds: " + rounds);
+            
+            for (int i = 0; i < _enemyAmount; i++)
             {
                 Vector2 spawnPoint = GetRandomPointonEdge();
                 Instantiate(enemyPrefab, spawnPoint, GetRotationTowardsMiddle(spawnPoint));
             }
+            
+            Debug.Log("Enemies Spawned: " + _enemyAmount);
         }
     }
 
@@ -65,11 +78,5 @@ public class EnemySpawnSystem : MonoBehaviour
         Vector2 dir = (Vector2)_boxCollider2D.bounds.center - spawnPoint;
 
         return Quaternion.LookRotation(Vector3.forward, dir);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
