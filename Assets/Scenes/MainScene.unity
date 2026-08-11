@@ -473,6 +473,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerCircle
       objectReference: {fileID: 0}
+    - target: {fileID: 7589113803761150759, guid: d9bfd76e9b532cf409a1c4ea4925470c, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 8500474668124141158, guid: d9bfd76e9b532cf409a1c4ea4925470c, type: 3}
       propertyPath: m_SortingOrder
       value: 1
