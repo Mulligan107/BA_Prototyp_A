@@ -1,32 +1,35 @@
+using System;
 using Unity.Cinemachine;
 using UnityEngine;
 
-[RequireComponent(typeof(BoxCollider2D), typeof(Collider2D))]
+[RequireComponent(typeof(BoxCollider2D))]
 public class BulletBehaviour : MonoBehaviour
 {
-    [SerializeField] private float speed = 8f;
-    [SerializeField] private float lifeTime = 2f;
-    [SerializeField] private int damage = 1;
-    
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        Destroy(gameObject, lifeTime);
-    }
+    private float _lifeTime = 2f;
+    private float _speed;
+    private int _damage;
 
-    // Update is called once per frame
+    public void Init(PlayerStats playerStats)
+    {
+        _speed = playerStats.BulletSpeed;
+        _damage = playerStats.BulletDamage;
+        transform.localScale = Vector3.one * playerStats.BulletSize;
+        
+        Destroy(gameObject, _lifeTime);
+    }
+    
     void Update()
     {
-        transform.position += transform.right * (speed * Time.deltaTime);
+        transform.position += transform.right * (_speed * Time.deltaTime);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (!collision.CompareTag("Enemy")) return;
 
-        if (collision.TryGetComponent(out EnemyStats enemyhealth))
+        if (collision.TryGetComponent(out EnemyStats enemyStats))
         {
-            enemyhealth.TakeDamage(damage);
+            enemyStats.TakeDamage(_damage);
         }
         
         Destroy(gameObject);

@@ -135,8 +135,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 757a73c68a573a549bc5a2f5a8f544c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  rigidbody2D: {fileID: 0}
-  speed: 5
 --- !u!114 &-7952396014241692544
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,7 +147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a99eb0cb7cc18394aad5e89c3bbb1dc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerShooterController
-  bulletPrefab: {fileID: 874479377144622215, guid: 36d839b21455d2745b13d3c8e02bcfa3, type: 3}
+  bulletPrefab: {fileID: -1291733902352701734, guid: 36d839b21455d2745b13d3c8e02bcfa3, type: 3}
 --- !u!114 &-6082827678442471017
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,3 +161,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
   playerHealth: 10
+  playerSpeed: 5
+  bulletSpeed: 8
+  bulletDamage: 1
+  bulletSize: 0.2
+  maxShootDistance: 10
+  fireRate: 0.5

@@ -2,12 +2,17 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    private Rigidbody2D _rigidbody2D;
+    private PlayerStats _playerStats;
     private PlayerControls _playerControls;
-    [SerializeField] private Rigidbody2D rigidbody2D;
-    [SerializeField] private float speed = 5;
-
+    private Vector2 _move;
+    
+    
     private void Awake()
     {
+        if (_rigidbody2D == null) _rigidbody2D = GetComponent<Rigidbody2D>();
+        if (_playerStats == null) _playerStats = GetComponent<PlayerStats>();
+        
         _playerControls = new PlayerControls();
     }
 
@@ -21,16 +26,13 @@ public class PlayerController : MonoBehaviour
         _playerControls.Disable();
     }
     
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        Vector2 move = _playerControls.Movement.Move.ReadValue<Vector2>();
-        rigidbody2D.linearVelocity = new  Vector2(move.x * speed, move.y * speed);
+        _move = _playerControls.Movement.Move.ReadValue<Vector2>();
+    }
+
+    void FixedUpdate()
+    {
+        _rigidbody2D.linearVelocity = _move * _playerStats.PlayerSpeed;
     }
 }
