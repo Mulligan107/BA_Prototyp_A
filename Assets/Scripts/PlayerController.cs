@@ -35,4 +35,14 @@ public class PlayerController : MonoBehaviour
     {
         _rigidbody2D.linearVelocity = _move * _playerStats.PlayerSpeed;
     }
+    
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!collision.CompareTag("Enemy")) return;
+
+        if (collision)
+        {
+            _playerStats.TakeDamage(1);
+        }
+    }
 }

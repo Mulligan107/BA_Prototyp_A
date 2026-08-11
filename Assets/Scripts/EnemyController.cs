@@ -89,6 +89,5 @@ public class EnemyController : MonoBehaviour
         {
             _rb.linearVelocity = transform.up * speed;
         }
-        
     }
 }

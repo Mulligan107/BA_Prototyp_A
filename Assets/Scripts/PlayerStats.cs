@@ -9,6 +9,9 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private float bulletSize = .2f;
     [SerializeField] private float maxShootDistance = 10f;
     [SerializeField] private float fireRate = 0.5f;
+    [SerializeField] private float invulnerabilityDuration = 0.5f;
+    
+    private float _lastHitTime = float.NegativeInfinity; // damit der allererste Treffer garantiert durchgeht
 
     public int PlayerHealth
     {
@@ -50,5 +53,26 @@ public class PlayerStats : MonoBehaviour
     {
         get => fireRate;
         set => fireRate = value;
+    }
+    
+    public void TakeDamage(int damage)
+    {
+        //während unverwundbarkeit kann kein schaden nehmen
+        if (Time.time < _lastHitTime + invulnerabilityDuration)
+            return;
+
+        //wenn getroffen unverwundbarkeit anwenden
+        _lastHitTime = Time.time;
+        playerHealth -= damage;
+
+        if (playerHealth <= 0)
+            Die();
+        
+        Debug.Log("Player damaged: " + playerHealth);
+    }
+    
+    private void Die()
+    {
+        Destroy(gameObject);
     }
 }
