@@ -1,0 +1,16 @@
+using UnityEngine;
+
+
+public enum UpgradableStat
+{
+    MaxHealth, MoveSpeed, BulletSpeed, BulletDamage, BulletSize
+}
+
+[CreateAssetMenu(fileName = "Upgrade_", menuName = "Game/Upgrade")]
+public class UpgradeData : ScriptableObject
+{
+    public string title;
+    public string description;
+    public UpgradableStat stat;
+    public float amount;
+}

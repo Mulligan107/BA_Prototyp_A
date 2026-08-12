@@ -13,6 +13,8 @@ public class PlayerStats : MonoBehaviour
     
     private float _lastHitTime = float.NegativeInfinity; // damit der allererste Treffer garantiert durchgeht
 
+    public event System.Action OnStatsChanged;
+
     public int PlayerHealth
     {
         get => playerHealth;
@@ -69,6 +71,19 @@ public class PlayerStats : MonoBehaviour
             Die();
         
         Debug.Log("Player damaged: " + playerHealth);
+    }
+
+    public void ApplyUpgrade(UpgradeData up)
+    {
+        switch (up.stat)
+        {
+            case UpgradableStat.MaxHealth: playerHealth += Mathf.RoundToInt(up.amount); break;
+            case UpgradableStat.MoveSpeed: playerSpeed += up.amount; break;
+            case UpgradableStat.BulletSpeed: bulletSpeed += up.amount; break;
+            case UpgradableStat.BulletDamage: bulletDamage += Mathf.RoundToInt(up.amount); break;
+            case UpgradableStat.BulletSize: bulletSize += up.amount; break;
+        }
+        OnStatsChanged?.Invoke();
     }
     
     private void Die()

@@ -129,6 +129,35 @@
                     "isPartOfComposite": true
                 }
             ]
+        },
+        {
+            "name": "Testing",
+            "id": "c156eedb-d7e3-4de9-add9-bc8f63ea7403",
+            "actions": [
+                {
+                    "name": "RandomTests",
+                    "type": "Button",
+                    "id": "d6535a62-45c6-4843-9382-5951a2fc7218",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "581d8cd8-32c5-4542-97f5-0ef07c540ab1",
+                    "path": "<Keyboard>/u",
+                    "interactions": "Tap",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RandomTests",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []
