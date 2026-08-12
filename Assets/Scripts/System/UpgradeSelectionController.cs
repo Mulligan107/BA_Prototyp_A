@@ -3,7 +3,7 @@ using System.Collections.Generic;
 public class UpgradeSelectionController : MonoBehaviour
 {
     [SerializeField] private UpgradeCard[] cards = new UpgradeCard[3];
-    [SerializeField] private List<UpgradeData> pool = new List<UpgradeData>();
+    [SerializeField] private List<UpgradeData> pool;
     [SerializeField] private GameObject panel;
     
     private PlayerStats _playerStats;
@@ -29,7 +29,6 @@ public class UpgradeSelectionController : MonoBehaviour
     private void OnPicked(UpgradeData data)
     {
         _playerStats.ApplyUpgrade(data);
-        pool.Remove(data);
         Time.timeScale = 1f;
         panel.SetActive(false);
     }

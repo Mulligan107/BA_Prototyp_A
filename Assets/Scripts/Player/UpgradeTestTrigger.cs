@@ -25,7 +25,6 @@ public class UpgradeTestTrigger : MonoBehaviour
 
     private void OnTestPressed(InputAction.CallbackContext ctx)
     {
-        if (Input.GetKeyDown(KeyCode.U)) popup.Open(stats);
         Debug.Log("U gedrückt");
         popup.Open(stats);
     }
