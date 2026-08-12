@@ -15,4 +15,6 @@ MonoBehaviour:
   title: Bullet Size Up
   description: Increases the size of your bullet by .1
   stat: 4
-  amount: 0.1
+  amount: 0.05
+  tooltipOverride: The size of your bullet will be increased by 0.05, exactly 25%
+    of the starting size.

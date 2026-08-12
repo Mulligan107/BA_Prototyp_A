@@ -16,3 +16,4 @@ MonoBehaviour:
   description: Increases the damage of your bullet by 1
   stat: 3
   amount: 1
+  tooltipOverride: The damage of your bullet will increase by exactly 1. (Best option)

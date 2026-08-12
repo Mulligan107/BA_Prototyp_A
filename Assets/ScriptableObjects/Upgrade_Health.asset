@@ -16,3 +16,4 @@ MonoBehaviour:
   description: Increases your health by 1
   stat: 0
   amount: 1
+  tooltipOverride: Your Health increases by one. You do not regain lost health.

@@ -16,3 +16,4 @@ MonoBehaviour:
   description: Increaes the speed of your bullet by 1
   stat: 2
   amount: 1
+  tooltipOverride: The Speed at which your bullet flies will be increased by 1.
