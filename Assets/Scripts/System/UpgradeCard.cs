@@ -2,7 +2,6 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(Button))]
 public class UpgradeCard : MonoBehaviour
 {
     [SerializeField] private Text titleText;

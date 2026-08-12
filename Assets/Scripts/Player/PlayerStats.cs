@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
+    //SpielerStats an einem GameObject, dem Spieler
     [SerializeField] private int playerHealth = 10;
     [SerializeField] private float playerSpeed = 5;
     [SerializeField] private float bulletSpeed = 8f;

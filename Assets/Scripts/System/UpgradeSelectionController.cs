@@ -2,49 +2,37 @@ using UnityEngine;
 using System.Collections.Generic;
 public class UpgradeSelectionController : MonoBehaviour
 {
-    [SerializeField] private UpgradeCard[] cards = new UpgradeCard[3];
-    [SerializeField] private List<UpgradeData> pool;
-    [SerializeField] private GameObject panel;
+    [SerializeField] private UpgradeCard[] cards = new UpgradeCard[3]; //Karten im UI
+    [SerializeField] private List<UpgradeData> pool; //Alle möglichen Upgrades
+    [SerializeField] private GameObject panel; //Das panel selbst
     
     private PlayerStats _playerStats;
     
     private void Awake() => panel.SetActive(false);
     
-    public void Open(PlayerStats playerStats)
+    //Man kann das upgrade fenster mit OpenCardUpgradeGUI überall öffnen
+    public void OpenCardUpgradeGUI(PlayerStats playerStats)
     {
         _playerStats = playerStats;
 
-        var choices = PickRandom(pool, cards.Length);
-        for (int i = 0; i < cards.Length; i++)
+        //Kopie damit das selbe upgrade nicht zwei mal kommt
+        var choices = new List<UpgradeData>(pool);
+
+        foreach (var card in cards)
         {
-            bool hasChoice = i < choices.Count;
-            cards[i].gameObject.SetActive(hasChoice);
-            if (hasChoice) cards[i].Bind(choices[i], OnPicked);
+            int index = Random.Range(0, choices.Count);
+            card.Bind(choices[index], OnCardPicked);
+            choices.RemoveAt(index);
         }
         
-        Time.timeScale = 0f;
+        Time.timeScale = 0f; //Spiel freeze
         panel.SetActive(true);
     }
 
-    private void OnPicked(UpgradeData data)
+    private void OnCardPicked(UpgradeData data)
     {
         _playerStats.ApplyUpgrade(data);
         Time.timeScale = 1f;
         panel.SetActive(false);
-    }
-
-    private static List<UpgradeData> PickRandom(List<UpgradeData> source, int count)
-    {
-        var copy = new List<UpgradeData>(source);
-        var result = new List<UpgradeData>();
-        count = Mathf.Min(count, copy.Count);
-
-        for (int i = 0; i < count; i++)
-        {
-            int idx = Random.Range(0, copy.Count);
-            result.Add(copy[idx]);
-            copy.RemoveAt(idx);
-        }
-        return result;
     }
 }

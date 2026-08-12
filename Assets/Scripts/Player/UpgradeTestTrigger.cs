@@ -26,6 +26,6 @@ public class UpgradeTestTrigger : MonoBehaviour
     private void OnTestPressed(InputAction.CallbackContext ctx)
     {
         Debug.Log("U gedrückt");
-        popup.Open(stats);
+        popup.OpenCardUpgradeGUI(stats);
     }
 }
