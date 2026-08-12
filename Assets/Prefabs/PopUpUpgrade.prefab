@@ -1250,11 +1250,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeSelectionController
   cards:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  pool: []
-  panel: {fileID: 0}
+  - {fileID: 8658356628343821993}
+  - {fileID: 4518159052541804697}
+  - {fileID: 6073439647258828726}
+  pool:
+  - {fileID: 11400000, guid: 6f551f97529e0dc4ebe4878d1545dbac, type: 2}
+  - {fileID: 11400000, guid: 9df0abfb10df0074197eef1d203892dc, type: 2}
+  - {fileID: 11400000, guid: a196311b90c910b4d9a52dcc642b2adc, type: 2}
+  - {fileID: 11400000, guid: fa04f20480aaf9d48950168652443f19, type: 2}
+  - {fileID: 11400000, guid: fe08e2676194f834dbe351915092cefc, type: 2}
+  panel: {fileID: 8457094333235254426}
 --- !u!1 &7403908329937238685
 GameObject:
   m_ObjectHideFlags: 0

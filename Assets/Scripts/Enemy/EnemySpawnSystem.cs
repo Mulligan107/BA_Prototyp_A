@@ -4,6 +4,8 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider2D))]
 public class EnemySpawnSystem : MonoBehaviour
 {
+    [SerializeField] private UpgradeSelectionController popup;
+    [SerializeField] private PlayerStats stats;
     [SerializeField] private GameObject enemyPrefab;
     [SerializeField] float enemySpawnIntervall = 10f;
     
@@ -38,6 +40,7 @@ public class EnemySpawnSystem : MonoBehaviour
             
             if (_rounds % 3 == 0)
             {
+                popup.OpenCardUpgradeGUI(stats);
                 _enemyHealthBonus += 1;
                 _enemyAmount += 5;
             }

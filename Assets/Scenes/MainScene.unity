@@ -331,6 +331,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0601c40685feea34c9b04a561aee3bae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawnSystem
+  popup: {fileID: 1633869804}
+  stats: {fileID: 1408028452}
   enemyPrefab: {fileID: 4498050925277058321, guid: 106bd249ca428814e9b11a302350ab01, type: 3}
   enemySpawnIntervall: 10
 --- !u!61 &490528617
