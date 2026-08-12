@@ -12,9 +12,7 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private float fireRate = 0.5f;
     [SerializeField] private float invulnerabilityDuration = 0.5f;
     
-    private float _lastHitTime = float.NegativeInfinity; // damit der allererste Treffer garantiert durchgeht
-
-    public event System.Action OnStatsChanged;
+    private float _lastHitTime = float.NegativeInfinity; //damit der allererste Treffer garantiert durchgeht
 
     public int PlayerHealth
     {
@@ -84,7 +82,6 @@ public class PlayerStats : MonoBehaviour
             case UpgradableStat.BulletDamage: bulletDamage += Mathf.RoundToInt(up.amount); break;
             case UpgradableStat.BulletSize: bulletSize += up.amount; break;
         }
-        OnStatsChanged?.Invoke();
     }
     
     private void Die()

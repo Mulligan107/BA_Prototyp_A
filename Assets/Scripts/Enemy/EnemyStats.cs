@@ -11,6 +11,12 @@ public class EnemyStats : MonoBehaviour
         _currentHealth = enemyHealth;
     }
 
+    public void AddBonusHealth(int amount)
+    {
+        enemyHealth += amount;
+        _currentHealth = enemyHealth;
+    }
+    
     public void TakeDamage(int damage)
     {
         _currentHealth -= damage;

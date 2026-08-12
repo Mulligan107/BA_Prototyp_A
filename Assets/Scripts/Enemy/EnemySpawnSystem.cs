@@ -10,8 +10,10 @@ public class EnemySpawnSystem : MonoBehaviour
     private BoxCollider2D _boxCollider2D;
     private Transform _transform;
     
-    private int rounds;
+    private int _rounds;
     private int _enemyAmount = 10;
+    private int _enemyHealthBonus;
+    private float _enemySpeedBonus;
 
     private void Awake()
     {
@@ -21,10 +23,10 @@ public class EnemySpawnSystem : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        StartCoroutine(spawnEnemyLoop());
+        StartCoroutine(SpawnEnemyLoop());
     }
 
-    private IEnumerator spawnEnemyLoop()
+    private IEnumerator SpawnEnemyLoop()
     {
         WaitForSeconds wait = new WaitForSeconds(enemySpawnIntervall);
         
@@ -32,19 +34,27 @@ public class EnemySpawnSystem : MonoBehaviour
         {
             yield return wait;
             
-            rounds += 1;
-            if (rounds >= 3)
+            _rounds += 1;
+            
+            if (_rounds % 3 == 0)
             {
+                _enemyHealthBonus += 1;
                 _enemyAmount += 5;
-                rounds = 0;
+            }
+
+            if (_rounds % 6 == 0)
+            {
+                _enemySpeedBonus += 1f;
             }
             
-            Debug.Log("Rounds: " + rounds);
+            Debug.Log("Rounds: " + _rounds);
             
             for (int i = 0; i < _enemyAmount; i++)
             {
                 Vector2 spawnPoint = GetRandomPointonEdge();
-                Instantiate(enemyPrefab, spawnPoint, GetRotationTowardsMiddle(spawnPoint));
+                GameObject enemy = Instantiate(enemyPrefab, spawnPoint, GetRotationTowardsMiddle(spawnPoint));
+                enemy.GetComponent<EnemyStats>().AddBonusHealth(_enemyHealthBonus);
+                enemy.GetComponent<EnemyController>().AddBonusSpeed(_enemySpeedBonus);
             }
             
             Debug.Log("Enemies Spawned: " + _enemyAmount);
