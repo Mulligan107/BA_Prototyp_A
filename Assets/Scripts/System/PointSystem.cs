@@ -11,6 +11,9 @@ public class PointSystem : MonoBehaviour
     private float _pointsPerSecond = 1f;
     private int _points = 0;
     private float _accumulator;
+    
+    public int Points => _points;
+    private static bool IsGameOver => GameManager.Instance != null && GameManager.Instance.IsGameOver;
 
     private void OnEnable()
     {
@@ -22,25 +25,28 @@ public class PointSystem : MonoBehaviour
         EnemyStats.Died -= AddPoints;
     }
 
-    public void AddPoints(int points)
-    {
-        _points += points;
-        UpdateLabel();
-    }
-
     private void Start()
     {
         if (label == null)
         {
-            enabled = false;
-            return;
+            Debug.LogWarning("Kein Label zugewiesen", this);
         }
 
+        UpdateLabel();
+    }
+    
+    public void AddPoints(int points)
+    {
+        if (IsGameOver) return;
+        
+        _points += points;
         UpdateLabel();
     }
 
     private void Update()
     {
+        if (IsGameOver) return;
+        
         _accumulator += _pointsPerSecond * Time.deltaTime;
         
         int whole = Mathf.FloorToInt(_accumulator);
@@ -53,6 +59,7 @@ public class PointSystem : MonoBehaviour
 
     private void UpdateLabel()
     {
+        if (label == null) return;
         label.text = string.Format(format, _points);
     }
 }

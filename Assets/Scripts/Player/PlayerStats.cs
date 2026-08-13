@@ -1,3 +1,5 @@
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
@@ -13,6 +15,9 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private float invulnerabilityDuration = 0.5f;
     
     private float _lastHitTime = float.NegativeInfinity; //damit der allererste Treffer garantiert durchgeht
+    private bool _isDead;
+
+    public static event Action Died;
 
     public int PlayerHealth
     {
@@ -67,7 +72,10 @@ public class PlayerStats : MonoBehaviour
         playerHealth -= damage;
 
         if (playerHealth <= 0)
+        {
+            playerHealth = 0;
             Die();
+        }
         
         Debug.Log("Player damaged: " + playerHealth);
     }
@@ -86,6 +94,13 @@ public class PlayerStats : MonoBehaviour
     
     private void Die()
     {
-        Destroy(gameObject);
+        if (_isDead) return;
+        _isDead = true;
+        
+        Died?.Invoke();
+        
+        //Destroy(gameObject);
+        // set active false statt destroy damit referenzen aufrecht bleiben
+        gameObject.SetActive(false);
     }
 }
