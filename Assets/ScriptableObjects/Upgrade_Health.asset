@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Upgrade_Health
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeData
   title: Health UP
-  description: Increases your health by 1
+  description: Increases your health by 3
   stat: 0
-  amount: 1
-  tooltipOverride: Your Health increases by one. You do not regain lost health.
+  amount: 3
+  tooltipOverride: Your Health increases by three. You do not regain lost health.
