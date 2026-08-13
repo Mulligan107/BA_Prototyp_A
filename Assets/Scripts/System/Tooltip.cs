@@ -2,7 +2,6 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
-using UnityEngine.UI;
 
 public class Tooltip : MonoBehaviour
 {
@@ -12,7 +11,6 @@ public class Tooltip : MonoBehaviour
     private RectTransform _tooltipBackgroundRect;
     private RectTransform _parentRect;
     private bool _initialized;
-
 
     private void Awake()
     {

@@ -1,10 +1,15 @@
+using System;
 using UnityEngine;
 
 public class EnemyStats : MonoBehaviour
 {
     [SerializeField] private int enemyHealth = 2;
     
+    private int _pointRewardOnKill = 10;
     private int _currentHealth;
+    private bool _isDead;
+    
+    public static event Action<int> Died;
 
     void Awake()
     {
@@ -19,6 +24,8 @@ public class EnemyStats : MonoBehaviour
     
     public void TakeDamage(int damage)
     {
+        if (_isDead)  return;
+        
         _currentHealth -= damage;
 
         if (_currentHealth <= 0)
@@ -29,6 +36,8 @@ public class EnemyStats : MonoBehaviour
 
     private void Die()
     {
+        _isDead = true;
+        Died?.Invoke(_pointRewardOnKill);
         Destroy(gameObject);
     }
 }
