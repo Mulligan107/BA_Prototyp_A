@@ -109,7 +109,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyController
   playerAwarenessDistance: 100
-  speed: 4
+  speed: 3
   rotationSpeed: 100
 --- !u!50 &5022053040121524047
 Rigidbody2D:

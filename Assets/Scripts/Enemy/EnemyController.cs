@@ -6,7 +6,7 @@ public class EnemyController : MonoBehaviour
     public Vector2 DirectionToPlayer {get; set;}
 
     [SerializeField] private float playerAwarenessDistance = 100f;
-    [SerializeField] private float speed = 4f;
+    [SerializeField] private float speed = 3f;
     [SerializeField] private float rotationSpeed = 100f;
 
     private Transform _player;
