@@ -12,7 +12,7 @@ public class PlayerShooterController : MonoBehaviour
     
     private float _nextShotTime;
     private float _refreshTimer;
-    private const float RefreshInterval = 0.2f; //Damit gegner 5 mal die sekunde die liste befüllen
+    private const float RefreshInterval = 0.2f;
 
     private void Awake()
     {
@@ -32,7 +32,7 @@ public class PlayerShooterController : MonoBehaviour
         {
             if (Shoot())
             {
-                _nextShotTime = Time.time + _playerStats.FireRate; // schüsse pro sekunde
+                _nextShotTime = Time.time + _playerStats.FireRate;
             }
         }
     }
@@ -59,7 +59,7 @@ public class PlayerShooterController : MonoBehaviour
             }
         }
 
-        return targetEnemy; //nähester gegener
+        return targetEnemy;
     }
     
     private bool Shoot()

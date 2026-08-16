@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-    //SpielerStats an einem GameObject, dem Spieler
     [SerializeField] private int playerHealth = 10;
     [SerializeField] private float playerSpeed = 5;
     [SerializeField] private float bulletSpeed = 8f;
@@ -14,7 +13,7 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private float fireRate = 0.5f;
     [SerializeField] private float invulnerabilityDuration = 0.5f;
     
-    private float _lastHitTime = float.NegativeInfinity; //damit der allererste Treffer garantiert durchgeht
+    private float _lastHitTime = float.NegativeInfinity;
     private bool _isDead;
 
     public static event Action Died;
@@ -63,11 +62,9 @@ public class PlayerStats : MonoBehaviour
     
     public void TakeDamage(int damage)
     {
-        //während unverwundbarkeit kann kein schaden nehmen
         if (Time.time < _lastHitTime + invulnerabilityDuration)
             return;
-
-        //wenn getroffen unverwundbarkeit anwenden
+        
         _lastHitTime = Time.time;
         playerHealth -= damage;
 
@@ -99,8 +96,6 @@ public class PlayerStats : MonoBehaviour
         
         Died?.Invoke();
         
-        //Destroy(gameObject);
-        // set active false statt destroy damit referenzen aufrecht bleiben
         gameObject.SetActive(false);
     }
 }

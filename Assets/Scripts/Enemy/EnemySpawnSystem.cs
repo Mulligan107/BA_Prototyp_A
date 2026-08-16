@@ -22,7 +22,6 @@ public class EnemySpawnSystem : MonoBehaviour
         _boxCollider2D = GetComponent<BoxCollider2D>();
     }
     
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         StartCoroutine(SpawnEnemyLoop());
@@ -71,19 +70,18 @@ public class EnemySpawnSystem : MonoBehaviour
         float width = b.size.x;
         float height = b.size.y;
         
-        //geht ne zufällige distanz um den Perimeter des GameObjects um zufällige Spawnpoints zu setzen
         float t = Random.Range(0f, 2f * (width + height));
 
-        if (t < width) return new Vector2(b.min.x + t, b.min.y); // unten
+        if (t < width) return new Vector2(b.min.x + t, b.min.y);
         t -= width;
         
-        if (t < width) return new Vector2(b.min.x + t, b.max.y); //oben
+        if (t < width) return new Vector2(b.min.x + t, b.max.y);
         t -= width;
         
-        if (t < height) return new Vector2(b.min.x, b.min.y + t); //links 
+        if (t < height) return new Vector2(b.min.x, b.min.y + t);
         t -= height;
         
-        return new Vector2(b.max.x, b.min.y + t); //rechts
+        return new Vector2(b.max.x, b.min.y + t);
     }
 
     private Quaternion GetRotationTowardsMiddle(Vector2 spawnPoint)

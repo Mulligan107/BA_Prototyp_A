@@ -1,14 +1,11 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
-
-//erscheint im inspector als dropdown-menu
 public enum UpgradableStat
 {
     MaxHealth, MoveSpeed, BulletSpeed, BulletDamage, BulletSize
 }
 
-//reiner datencontainer
 [CreateAssetMenu(fileName = "Upgrade_", menuName = "Game/Upgrade")]
 public class UpgradeData : ScriptableObject
 {

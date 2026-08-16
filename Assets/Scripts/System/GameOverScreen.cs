@@ -16,7 +16,7 @@ public class GameOverScreen : MonoBehaviour
     public void Show(GameManager.EndReason reason)
     {
         gameObject.SetActive(true);
-        transform.SetAsLastSibling(); //oberstes hud
+        transform.SetAsLastSibling();
 
         if (titleText != null)
         {

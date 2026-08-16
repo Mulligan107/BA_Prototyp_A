@@ -2,20 +2,18 @@ using UnityEngine;
 using System.Collections.Generic;
 public class UpgradeSelectionController : MonoBehaviour
 {
-    [SerializeField] private UpgradeCard[] cards = new UpgradeCard[3]; //Karten im UI
-    [SerializeField] private List<UpgradeData> pool; //Alle möglichen Upgrades
-    [SerializeField] private GameObject panel; //Das panel selbst
+    [SerializeField] private UpgradeCard[] cards = new UpgradeCard[3];
+    [SerializeField] private List<UpgradeData> pool;
+    [SerializeField] private GameObject panel;
     
     private PlayerStats _playerStats;
     
     private void Awake() => panel.SetActive(false);
     
-    //Man kann das upgrade fenster mit OpenCardUpgradeGUI überall öffnen
     public void OpenCardUpgradeGUI(PlayerStats playerStats)
     {
         _playerStats = playerStats;
-
-        //Kopie damit das selbe upgrade nicht zwei mal kommt
+        
         var choices = new List<UpgradeData>(pool);
 
         foreach (var card in cards)
@@ -25,7 +23,7 @@ public class UpgradeSelectionController : MonoBehaviour
             choices.RemoveAt(index);
         }
         
-        Time.timeScale = 0f; //Spiel freeze
+        Time.timeScale = 0f;
         panel.SetActive(true);
     }
 
